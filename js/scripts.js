@@ -26,20 +26,43 @@ class BoxShadowGenerator{
             this.webkitRule=webkitRule
             this.mozRule=mozRule
         }
+
+        initialize() {
+            this.horizontalRef.value = this.horizontal.value;
+            this.verticalRef.value = this.vertical.value;
+            this.blurRef.value = this.blur.value;
+            this.spreadRef.value = this.spread.value;
+
+            this.applyRule();
+            this.showRule();
+        }
+
+        applyRule() {
+            this.previewBox.style.boxShadow = `${this.horizontalRef.value}px ${this.verticalRef.value}px ${this.blurRef.value}px ${this.spreadRef.value}px #000000`;
+
+            this.currentRule = this.previewBox.style.boxShadow;
+        }
+
+        showRule() {
+            this.rule.innerText = this.currentRule;
+            this.webkitRule.innerText = this.currentRule;
+            this.mozRule.innerText = this.currentRule;
+
+        }
 }
 
 // Seleção de elementos 
-const horizontal = document.querySelector("horizontal")
-const horizontalRef = document.querySelector("horizontal-value")
+const horizontal = document.querySelector("#horizontal")
+const horizontalRef = document.querySelector("#horizontal-value")
 
-const vertical = document.querySelector("vertical")
-const verticalRef = document.querySelector("vertical-value")
+const vertical = document.querySelector("#vertical")
+const verticalRef = document.querySelector("#vertical-value")
 
-const blur = document.querySelector("blur")
-const blurRef = document.querySelector("blur-value")
+const blur = document.querySelector("#blur")
+const blurRef = document.querySelector("#blur-value")
 
-const spread = document.querySelector("spread")
-const spreadRef = document.querySelector("spread-value")
+const spread = document.querySelector("#spread")
+const spreadRef = document.querySelector("#spread-value")
 
 const previewBox = document.querySelector("#box")
 
@@ -59,4 +82,8 @@ const BoxShadow = new BoxShadowGenerator(
     previewBox, 
     rule,webkitRule,
     mozRule)
+
+
+BoxShadow.initialize()
 // Eventos  
+
